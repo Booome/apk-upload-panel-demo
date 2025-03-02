@@ -1,3 +1,4 @@
+import { SessionProvider } from "@/components/SessionProvider";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Footer from "./Footer";
@@ -24,9 +25,11 @@ export default function RootLayout({
       <body
         className={`${inter.variable} mx-auto flex min-h-screen w-full max-w-screen-lg flex-col antialiased`}
       >
-        <Header />
-        {children}
-        <Footer className="mt-auto mb-0" />
+        <SessionProvider>
+          <Header />
+          {children}
+          <Footer className="mt-auto mb-0" />
+        </SessionProvider>
       </body>
     </html>
   );

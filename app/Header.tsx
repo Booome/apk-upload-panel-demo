@@ -1,4 +1,5 @@
 import logo from "@/app/favicon.ico";
+import AuthButton from "@/components/AuthButton";
 import Image from "next/image";
 
 export default function Header() {
@@ -14,7 +15,7 @@ export default function Header() {
       <span className="ml-2 text-xl font-medium">APK Upload Panel Demo</span>
 
       <div className="divider divider-horizontal mr-2 ml-auto" />
-      <button className="mr-0 ml-0 font-semibold">SIGN IN</button>
+      <AuthButton />
     </header>
   );
 }
