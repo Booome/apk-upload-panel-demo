@@ -3,11 +3,11 @@ import { FileMetadata } from "@/lib/types";
 import { useEffect, useState } from "react";
 
 export default function UploadHistory() {
-  const supabase = createClient();
   const [files, setFiles] = useState<FileMetadata[]>([]);
 
   useEffect(() => {
     const fetchFiles = async () => {
+      const supabase = createClient();
       const { data, error } = await supabase.from("apk_files").select("*");
       if (error) {
         console.error("Error fetching files:", error);
