@@ -1,22 +1,25 @@
 "use client";
 
-import { signIn, signOut, useSession } from "next-auth/react";
+import { useUser } from "@/components/userProvider";
+import { loginWithGoogle, signOut } from "@/lib/supabase/client";
 
 export default function AuthButton() {
-  const { data: session } = useSession();
-  const buttonClasses = "text-sm font-semibold underline";
+  const user = useUser();
+  const buttonClasses = "text-sm font-semibold underline hover:cursor-pointer";
 
   return (
     <>
-      {session ? (
+      {user ? (
         <>
-          <span className="mr-4 font-semibold">Hi, {session.user?.name}</span>
-          <button onClick={() => signOut()} className={buttonClasses}>
+          <span className="mr-4 font-semibold">
+            Hi, {user.user_metadata.name ?? user.email}
+          </span>
+          <button onClick={signOut} className={buttonClasses}>
             SIGN OUT
           </button>
         </>
       ) : (
-        <button onClick={() => signIn("google")} className={buttonClasses}>
+        <button onClick={loginWithGoogle} className={buttonClasses}>
           SIGN IN
         </button>
       )}
